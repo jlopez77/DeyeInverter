@@ -21,70 +21,7 @@ mqtt_topic="XXXXXXXX"
 
 ```python3 InverterData.py
 
-Inverter ID:XXXXX
-Inverter ID:XXXXX
-Inverter ID:XXXXX
-Inverter ID:XXXXX
-Inverter ID:XXXXX
-Control Board Version No.:8537
-Communication Board Version No.:-31929
-Running Status:2
-Total Grid Produciton:145.3kwh
-Total Grid Produciton:0.0kwh
-Daily Energy Bought:8.700000000000001kwh
-Daily Energy Sold:0.0kwh
-Total Energy Bought:63.7kwh
-Total Energy Bought:0.0kwh
-Total Energy Sold:28.400000000000002kwh
-Total Energy Sold:0.0kwh
-Daily Load Consumption:12.9KWH
-Total Load Consumption:183.0KWH
-Total Load Consumption:0.0KWH
-DC Temperature:165.3℃
-AC Temperature:152.9℃
-Total Production:157.0KWH
-Total Production:0.0KWH
-Alert:0
-Alert:0
-Alert:0
-Alert:0
-Alert:0
-Alert:0
-Daily Production:4.4KWH
-PV1 Voltage:221.0V
-PV1 Current:4.6000000000000005A
-PV2 Voltage:216.5V
-PV2 Current:8.1A
-Grid Voltage L1:240.0V
-Grid Voltage L2:0.0V
-Load Voltage:248.10000000000002V
-Current L1:5.17A
-Current L2:0.0A
-Micro-inverter Power:0W
-Gen-connected Status:0
-Gen Power:0W
-Internal CT L1 Power:-1168W
-Internal CT L2  Power:0W
-Grid Status:53
-Total Gird Power:53W
-External CT L1 Power:53W
-External CT L2 Power:0W
-Inverter L1 Power:1145W
-Inverter L2 Power:0W
-Total Power:1145W
-Load L1 Power:1198W
-Load L2 Power:0W
-Total Load Power:1198W
-Battery Temperature:129.0℃
-Battery Voltage:54.19V
-Battery SOC:67%
-PV1 Power:1018W
-PV2 Power:1729W
-Battery Status:-1547
-Battery Power:-1547W
-Battery Current:-28.55A
-Grid-connected Status:1
-SmartLoad Enable Status:16
+[{"Inverter ID()":XXXXX,"Inverter ID()":XXXXX,"Inverter ID()":XXXXX,"Inverter ID()":XXXXX,"Inverter ID()":XXXXX,"Control Board Version No.()":12642,"Communication Board Version No.()":-31926,"Running Status()":2,"Total Grid Produciton(kwh)":829.5,"Total Grid Produciton(kwh)":0.0,"Daily Energy Bought(kwh)":0.0,"Daily Energy Sold(kwh)":15.0,"Total Energy Bought(kwh)":21.900000000000002,"Total Energy Bought(kwh)":0.0,"Total Energy Sold(kwh)":1103.4,"Total Energy Sold(kwh)":0.0,"Daily Load Consumption(KWH)":1.2000000000000002,"Total Load Consumption(KWH)":365.3,"Total Load Consumption(KWH)":0.0,"DC Temperature(℃)":149.5,"AC Temperature(℃)":152.1,"Total Production(KWH)":1517.4,"Total Production(KWH)":0.0,"Alert()":0,"Alert()":0,"Alert()":0,"Alert()":0,"Alert()":0,"Alert()":0,"Daily Production(KWH)":16.900000000000002,"PV1 Voltage(V)":342.20000000000005,"PV1 Current(A)":7.800000000000001,"PV2 Voltage(V)":8.5,"PV2 Current(A)":0.0,"Grid Voltage L1(V)":241.3,"Grid Voltage L2(V)":0.0,"Load Voltage(V)":242.9,"Current L1(A)":10.51,"Current L2(A)":0.0,"Micro-inverter Power(W)":0,"Gen-connected Status()":0,"Gen Power(W)":0,"Internal CT L1 Power(W)":-2325,"Internal CT L2  Power(W)":0,"Grid Status()":-2365,"Total Gird Power(W)":-2365,"External CT L1 Power(W)":-2365,"External CT L2 Power(W)":0,"Inverter L1 Power(W)":2558,"Inverter L2 Power(W)":0,"Total Power(W)":2558,"Load L1 Power(W)":193,"Load L2 Power(W)":0,"Total Load Power(W)":193,"Battery Temperature(℃)":125.0,"Battery Voltage(V)":10.14,"Battery SOC(%)":0,"PV1 Power(W)":2619,"PV2 Power(W)":0,"Battery Status()":0,"Battery Power(W)":0,"Battery Current(A)":-0.01,"Grid-connected Status()":1,"SmartLoad Enable Status()":16}]
 ```
 
 # Known Issues
