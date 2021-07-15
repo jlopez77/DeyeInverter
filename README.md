@@ -82,11 +82,11 @@ Grid-connected Status:1
 SmartLoad Enable Status:16
 ```
 
-#Issues
+# Known Issues
 
 Some data seems to be out of scale, for example all Temperatures are shown +100ºC
 
-#Contrib
+# Contrib
 
 Python is not my strongest suite, feel free to suggest, rewrite or add whatever you feel is necessary.
 
