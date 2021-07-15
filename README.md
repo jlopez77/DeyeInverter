@@ -7,10 +7,11 @@ Thanks to @xtheone https://github.com/XtheOne for his original V4 reader that wa
 # Configuration
 
 Edit the InverterData.py and enter the following data:
-
+```
 inverter_ip="192.168.X.XXX"
 inverter_port=8899
 inverter_sn=17XXXXXXXX
+```
 
 # Run
 
