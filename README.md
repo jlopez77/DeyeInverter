@@ -11,6 +11,10 @@ Edit the InverterData.py and enter the following data:
 inverter_ip="192.168.X.XXX"
 inverter_port=8899
 inverter_sn=17XXXXXXXX
+mqtt=1 # set 1 for mqtt output 0 for console output
+mqtt_server="192.168.X.XXX"
+mqtt_port=1883
+mqtt_topic="XXXXXXXX"
 ```
 
 # Run
