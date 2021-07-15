@@ -1,0 +1,660 @@
+[
+  {
+    "directory": "solar",
+    "items": [
+      {
+        "titleZH": "PV1功率",
+        "titleEN": "PV1 Power",
+        "registers": ["0x00BA"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "PV2功率",
+        "titleEN": "PV2 Power",
+        "registers": ["0x00BB"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "PV1电压",
+        "titleEN": "PV1 Voltage",
+        "registers": ["0x006D"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "V"
+      },
+      {
+        "titleZH": "PV2电压",
+        "titleEN": "PV2 Voltage",
+        "registers": ["0x006F"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "V"
+      },
+      {
+        "titleZH": "PV1电流",
+        "titleEN": "PV1 Current",
+        "registers": ["0x006E"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "A"
+      },
+      {
+        "titleZH": "PV2电流",
+        "titleEN": "PV2 Current",
+        "registers": ["0x0070"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "A"
+      },
+      {
+        "titleZH": "日发电量",
+        "titleEN": "Daily Production",
+        "registers": ["0x006C"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "KWH"
+      },
+      {
+        "titleZH": "总发电量",
+        "titleEN": "Total Production",
+        "registers": ["0x0060","0x0061"],
+        "interactionType": 1,
+        "parserRule": 3,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "KWH"
+      },
+      {
+        "titleZH": "微逆功率",
+        "titleEN": "Micro-inverter Power",
+        "registers": ["0x00A6"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      }
+    ]
+  },
+  {
+    "directory": "Battery",
+    "items": [
+      {
+        "titleZH": "电池状态",
+        "titleEN": "Battery Status",
+        "registers": ["0x00BE"],
+        "interactionType": 2,
+        "parserRule": 2,
+        "optionRanges": [
+          {
+            "key": 0,
+            "valueZH": "充电",
+            "valueEN": "Charge"
+          },
+          {
+            "key": 1,
+            "valueZH": "待机",
+            "valueEN": "Stand-by"
+          },
+          {
+            "key": 2,
+            "valueZH": "静止",
+            "valueEN": "Discharge"
+          }
+        ],
+        "ratio": 1,
+        "unit": ""
+      },
+      {
+        "titleZH": "电池功率",
+        "titleEN": "Battery Power",
+        "registers": ["0x00BE"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "电池电压",
+        "titleEN": "Battery Voltage",
+        "registers": ["0x00B7"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.01,
+        "unit": "V"
+      },
+      {
+        "titleZH": "电池SOC",
+        "titleEN": "Battery SOC",
+        "registers": ["0x00B8"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "%"
+      },
+      {
+        "titleZH": "电池电流",
+        "titleEN": "Battery Current",
+        "registers": ["0x00BF"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 0.01,
+        "unit": "A"
+      },
+      {
+        "titleZH": "电池温度",
+        "titleEN": "Battery Temperature",
+        "registers": ["0x00B6"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "℃"
+      }
+    ]
+  },
+  {
+    "directory": "Grid",
+    "items": [
+      {
+        "titleZH": "电网状态",
+        "titleEN": "Grid Status",
+        "registers": ["0x00A9"],
+        "interactionType": 2,
+        "parserRule": 1,
+        "optionRanges": [
+          {
+            "key": 0,
+            "valueZH": "卖电",
+            "valueEN": "SELL"
+          },
+          {
+            "key": 1,
+            "valueZH": "买电",
+            "valueEN": "BUY"
+          },
+          {
+            "key": 2,
+            "valueZH": "静止",
+            "valueEN": "Stand-by"
+          }
+        ],
+        "ratio": 1,
+        "unit": ""
+      },
+      {
+        "titleZH": "电网总功率",
+        "titleEN": "Total Gird Power",
+        "registers": ["0x00A9"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "电网电压1",
+        "titleEN": "Grid Voltage L1",
+        "registers": ["0x0096"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "V"
+      },
+      {
+        "titleZH": "电网电压2",
+        "titleEN": "Grid Voltage L2",
+        "registers": ["0x0097"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "V"
+      },
+      {
+        "titleZH": "内置功率1",
+        "titleEN": "Internal CT L1 Power",
+        "registers": ["0x00A7"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "内置功率2",
+        "titleEN": "Internal CT L2  Power",
+        "registers": ["0x00A8"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "外置功率1",
+        "titleEN": "External CT L1 Power",
+        "registers": ["0x00AA"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "外置功率2",
+        "titleEN": "External CT L2 Power",
+        "registers": ["0x00AB"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "今日买电量",
+        "titleEN": "Daily Energy Bought",
+        "registers": ["0x004C"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "kwh"
+      },
+      {
+        "titleZH": "累计买电量",
+        "titleEN": "Total Energy Bought",
+        "registers": ["0x004E","0x0050"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "kwh"
+      },
+      {
+        "titleZH": "今日卖电量",
+        "titleEN": "Daily Energy Sold",
+        "registers": ["0x004D"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "kwh"
+      },
+      {
+        "titleZH": "累计卖电量",
+        "titleEN": "Total Energy Sold",
+        "registers": ["0x0051","0x0052"],
+        "interactionType": 1,
+        "parserRule": 3,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "kwh"
+      },
+      {
+        "titleZH": "电网累计发电量",
+        "titleEN": "Total Grid Produciton",
+        "registers": ["0x003F","0x0040"],
+        "interactionType": 1,
+        "parserRule": 4,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "kwh"
+      }
+    ]
+  },
+  {
+    "directory": "Upsload",
+    "items": [
+      {
+        "titleZH": "负载总功率",
+        "titleEN": "Total Load Power",
+        "registers": ["0x00B2"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "负载功率1",
+        "titleEN": "Load L1 Power",
+        "registers": ["0x00B0"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "负载功率2",
+        "titleEN": "Load L2 Power",
+        "registers": ["0x00B1"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "负载电压",
+        "titleEN": "Load Voltage",
+        "registers": ["0x009D"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "V"
+      },
+      {
+        "titleZH": "今日负载耗电量",
+        "titleEN": "Daily Load Consumption",
+        "registers": ["0x0054"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "KWH"
+      },
+      {
+        "titleZH": "累计负载耗电量",
+        "titleEN": "Total Load Consumption",
+        "registers": ["0x0055","0x0056"],
+        "interactionType": 1,
+        "parserRule": 3,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "KWH"
+      },
+      {
+        "titleZH": "SmartLoad使能状态",
+        "titleEN": "SmartLoad Enable Status",
+        "registers": ["0x00C3"],
+        "interactionType": 2,
+        "parserRule": 1,
+        "optionRanges": [
+          {
+            "key": 0,
+            "valueZH": "失能",
+            "valueEN": "OFF"
+          },
+          {
+            "key": 1,
+            "valueZH": "使能",
+            "valueEN": "ON"
+          }
+        ],
+        "ratio": 1,
+        "unit": ""
+      }
+    ]
+  },
+  {
+    "directory": "Inverter",
+    "items": [
+      {
+        "titleZH": "运行状态",
+        "titleEN": "Running Status",
+        "registers": ["0x003B"],
+        "interactionType": 2,
+        "parserRule": 1,
+        "optionRanges": [
+          {
+            "key": 0,
+            "valueZH": "待机",
+            "valueEN": "Stand-by"
+          },
+          {
+            "key": 1,
+            "valueZH": "自检中",
+            "valueEN": "Self-checking"
+          },
+          {
+            "key": 2,
+            "valueZH": "正常",
+            "valueEN": "Normal"
+          },
+          {
+            "key": 3,
+            "valueZH": "故障",
+            "valueEN": "FAULT"
+          }
+        ],
+        "ratio": 1,
+        "unit": ""
+      },
+      {
+        "titleZH": "总功率",
+        "titleEN": "Total Power",
+        "registers": ["0x00AF"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "电流1",
+        "titleEN": "Current L1",
+        "registers": ["0x00A4"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 0.01,
+        "unit": "A"
+      },
+      {
+        "titleZH": "电流2",
+        "titleEN": "Current L2",
+        "registers": ["0x00A5"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 0.01,
+        "unit": "A"
+      },
+      {
+        "titleZH": "功率1",
+        "titleEN": "Inverter L1 Power",
+        "registers": ["0x00AD"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "功率2",
+        "titleEN": "Inverter L2 Power",
+        "registers": ["0x00AE"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "DC温度",
+        "titleEN": "DC Temperature",
+        "registers": ["0x005A"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "℃"
+      },
+      {
+        "titleZH": "AC温度",
+        "titleEN": "AC Temperature",
+        "registers": ["0x005B"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "℃"
+      },
+      {
+        "titleZH": "逆变器ID",
+        "titleEN": "Inverter ID",
+        "registers": ["0x0003","0x0004","0x0005","0x0006","0x0007"],
+        "interactionType": 1,
+        "parserRule": 5,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": ""
+      },
+      {
+        "titleZH": "通讯板版本号",
+        "titleEN": "Communication Board Version No.",
+        "registers": ["0x000E"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": ""
+      },
+      {
+        "titleZH": "控制板版本号",
+        "titleEN": "Control Board Version No.",
+        "registers": ["0x000D"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": ""
+      },
+      {
+        "titleZH": "并网状态",
+        "titleEN": "Grid-connected Status",
+        "registers": ["0x00C2"],
+        "interactionType": 2,
+        "parserRule": 1,
+        "optionRanges": [
+          {
+            "key": 0,
+            "value": "Off-Grid"
+          },
+          {
+            "key": 1,
+            "value": "On-Grid"
+          }
+        ],
+        "ratio": 1,
+        "unit": ""
+      },
+      {
+        "titleZH": "Gen-connected Status",
+        "titleEN": "Gen-connected Status",
+        "registers": ["0x00A6"],
+        "interactionType": 2,
+        "parserRule": 1,
+        "optionRanges": [
+          {
+            "key": 1,
+            "value": "On"
+          }
+        ],
+        "ratio": 1,
+        "unit": ""
+      },
+      {
+        "titleZH": "Gen Power",
+        "titleEN": "Gen Power",
+        "registers": ["0x00A6"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": "W"
+      },
+      {
+        "titleZH": "Time of use",
+        "titleEN": "Time of use",
+        "registers": ["0x00F8"],
+        "interactionType": 2,
+        "parserRule": 1,
+        "optionRanges": [
+          {
+            "key": 0,
+            "value": "Disable"
+          },
+          {
+            "key": 1,
+            "value": "Enable"
+          }
+        ],
+        "ratio": 1,
+        "unit": ""
+      },
+      {
+        "titleZH": "工作模式",
+        "titleEN": "Work Mode",
+        "registers": ["0x00F4","0x00F7"],
+        "interactionType": 2,
+        "parserRule": 3,
+        "optionRanges": [
+          {
+            "key": 0,
+            "value": "Selling First"
+          },
+          {
+            "key": 1,
+            "value": "Zero-Export to Load&Solar Sell"
+          },
+          {
+            "key": 2,
+            "value": "Zero-Export to Home&Solar Sell"
+          },
+          {
+            "key": 3,
+            "value": "Zero-Export to Load"
+          },
+          {
+            "key": 4,
+            "value": "Zero-Export to Home"
+          }
+        ],
+        "ratio": 1,
+        "unit": ""
+      }
+    ]
+  },
+  {
+    "directory": "Alert",
+    "items": [
+      {
+        "titleZH": "报警码",
+        "titleEN": "Alert",
+        "registers": ["0x0065","0x0066","0x0067","0x0068","0x0069","0x006A"],
+        "interactionType": 3,
+        "parserRule": 6,
+        "optionRanges": [],
+        "ratio": 1,
+        "unit": ""
+      }
+    ]
+  }
+]
