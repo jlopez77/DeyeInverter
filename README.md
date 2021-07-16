@@ -33,7 +33,7 @@ mqtt_topic="XXXXXXXXXXX"
 
 ```python3 InverterData.py
 
-[{"Inverter ID()":XXXXX,
+{"Inverter ID()":XXXXX,
 "Inverter ID()":XXXXX,
 "Inverter ID()":XXXXX,
 "Inverter ID()":XXXXX,
@@ -96,7 +96,7 @@ mqtt_topic="XXXXXXXXXXX"
 "Battery Power(W)":0,
 "Battery Current(A)":-0.01,
 "Grid-connected Status()":1,
-"SmartLoad Enable Status()":16}]
+"SmartLoad Enable Status()":16}
 ```
 
 # Known Issues
