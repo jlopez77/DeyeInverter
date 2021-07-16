@@ -1,5 +1,13 @@
 # DeyeInverter
 Small utility to read data from DEYE Inverters through the Solarman Datalogger. Works with S/N 17*
+MQTT support into Home Assistant:
+
+```
+  - platform: mqtt
+    name: "DeyeInverter"
+    state_topic: "mqtt_topic"
+    json_attributes_topic: "mqtt_topic/attributes"
+```
 
 Thanks to @fjcarretero https://github.com/fjcarretero for his incredible support on understanding the data from and to the datalogger.
 Thanks to @xtheone https://github.com/XtheOne for his original V4 reader that was an inspiration (and I borrowed *some* code).
@@ -11,10 +19,13 @@ Edit the InverterData.py and enter the following data:
 inverter_ip="192.168.X.XXX"
 inverter_port=8899
 inverter_sn=17XXXXXXXX
-mqtt=1 # set 1 for mqtt output 0 for console output
-mqtt_server="192.168.X.XXX"
+mqtt=1
+mqtt_server="192.168.X.X"
 mqtt_port=1883
-mqtt_topic="XXXXXXXX"
+# this script will output data in 2 topics for Home Assistant, feel free to modify it to your needs
+# Status will be output into the mqtt_topic
+# attributes will be output in mqqt_topic/attributes
+mqtt_topic="XXXXXXXXXXX"
 ```
 
 # Run
