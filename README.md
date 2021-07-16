@@ -27,6 +27,8 @@ mqtt_port=1883
 # Status will be output into the mqtt_topic
 # attributes will be output in mqqt_topic/attributes
 mqtt_topic="XXXXXXXXXXX"
+mqtt_username=""
+mqtt_passwd=""
 ```
 
 # Run
