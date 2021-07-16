@@ -18,14 +18,13 @@ def twosComplement_hex(hexval):
 
 inverter_ip="192.168.X.XXX"
 inverter_port=8899
-inverter_sn=17XXXXXXXX
+inverter_sn=17XXXXXXX
 mqtt=1
 mqtt_server="192.168.X.X"
 mqtt_port=1883
-# this script will output data in 2 topics for Home Assistant, feel free to modify it to your needs
-# Status will be output into the mqtt_topic
-# attributes will be output in mqqt_topic/attributes
-mqtt_topic="XXXXXXXXXXX"
+mqtt_topic="XXXXXXXX"
+mqtt_username=""
+mqtt_passwd=""
 
 # END CONFIG
 os.chdir(os.path.dirname(sys.argv[0]))
@@ -33,6 +32,9 @@ os.chdir(os.path.dirname(sys.argv[0]))
 
 if mqtt==1: 
  client=paho.Client("inverter")
+ if mqtt_username!="":  # only if mqtt_username is defined
+  client.tls_set()  # <--- even without arguments
+  client.username_pw_set(username=mqtt_username, password=mqtt_passwd)
  client.connect(mqtt_server, mqtt_port)
 
 # PREPARE & SEND DATA TO THE INVERTER
