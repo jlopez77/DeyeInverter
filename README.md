@@ -101,7 +101,7 @@ mqtt_topic="XXXXXXXXXXX"
 
 # Known Issues
 
-Some data seems to be out of scale, for example all Temperatures are shown +100ºC
+Some data seems to be out of scale, for example all Temperatures are shown +100ºC.
 
 # Contrib
 
