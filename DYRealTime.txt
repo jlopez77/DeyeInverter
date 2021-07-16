@@ -171,7 +171,7 @@
         "parserRule": 1,
         "inputRanges": [],
         "ratio": 0.1,
-        "unit": "℃"
+        "unit": "º"
       }
     ]
   },
@@ -206,7 +206,7 @@
       },
       {
         "titleZH": "电网总功率",
-        "titleEN": "Total Gird Power",
+        "titleEN": "Total Grid Power",
         "registers": ["0x00A9"],
         "interactionType": 1,
         "parserRule": 2,
@@ -246,7 +246,7 @@
       },
       {
         "titleZH": "内置功率2",
-        "titleEN": "Internal CT L2  Power",
+        "titleEN": "Internal CT L2 Power",
         "registers": ["0x00A8"],
         "interactionType": 1,
         "parserRule": 2,
@@ -316,7 +316,7 @@
       },
       {
         "titleZH": "电网累计发电量",
-        "titleEN": "Total Grid Produciton",
+        "titleEN": "Total Grid Production",
         "registers": ["0x003F","0x0040"],
         "interactionType": 1,
         "parserRule": 4,
@@ -504,7 +504,7 @@
         "parserRule": 2,
         "inputRanges": [],
         "ratio": 0.1,
-        "unit": "℃"
+        "unit": "º"
       },
       {
         "titleZH": "AC温度",
@@ -514,7 +514,7 @@
         "parserRule": 2,
         "inputRanges": [],
         "ratio": 0.1,
-        "unit": "℃"
+        "unit": "º"
       },
       {
         "titleZH": "逆变器ID",

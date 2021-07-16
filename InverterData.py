@@ -5,6 +5,7 @@ import re
 import libscrc
 import json
 import paho.mqtt.client as paho
+import os
 
 def twosComplement_hex(hexval):
     bits = 16
@@ -19,12 +20,15 @@ inverter_ip="192.168.X.XXX"
 inverter_port=8899
 inverter_sn=17XXXXXXXX
 mqtt=1
-mqtt_server="192.168.X.XXX"
+mqtt_server="192.168.X.X"
 mqtt_port=1883
-mqtt_topic="XXXXXXXX"
+# this script will output data in 2 topics for Home Assistant, feel free to modify it to your needs
+# Status will be output into the mqtt_topic
+# attributes will be output in mqqt_topic/attributes
+mqtt_topic="XXXXXXXXXXX"
 
 # END CONFIG
-
+os.chdir(os.path.dirname(sys.argv[0]))
 # Initialise MQTT if configured
 
 if mqtt==1: 
@@ -32,7 +36,7 @@ if mqtt==1:
  client.connect(mqtt_server, mqtt_port)
 
 # PREPARE & SEND DATA TO THE INVERTER
-output="[{" # initialise json output
+output="{" # initialise json output
 pini=0
 chunks=0
 while chunks<2:
@@ -116,9 +120,10 @@ while chunks<2:
   a+=1
  pini+=100
  chunks+=1  
-output=output[:-1]+"}]"
+output=output[:-1]+"}"
 if mqtt==1:
- client.publish(mqtt_topic,output)
+ client.publish(mqtt_topic,"Online")
+ client.publish(mqtt_topic+"/attributes",output)
  print("Ok")
 else:
  print(output)
