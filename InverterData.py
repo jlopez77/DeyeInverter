@@ -39,10 +39,10 @@ if mqtt==1:
 
 # PREPARE & SEND DATA TO THE INVERTER
 output="{" # initialise json output
-pini=0
+pini=59 # we can start in 59 instead of 0. We miss inverter s/n and board s/n.
 chunks=0
 while chunks<2:
- pfin=pini+100
+ pfin=pini+68
  if chunks==-1: # testing initialisation
   pini=235
   pfin=235
@@ -120,7 +120,7 @@ while chunks<2:
        #print(title+":"+str(response*ratio)+unit)
        output=output+"\""+ title + "(" + unit + ")" + "\":" + str(response*ratio)+","
   a+=1
- pini+=100
+ pini=128 # second chunk starts in 128
  chunks+=1  
 output=output[:-1]+"}"
 if mqtt==1:
