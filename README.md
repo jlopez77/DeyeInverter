@@ -1,17 +1,7 @@
 # DeyeInverter
 Small utility to read data from DEYE Inverters through the Solarman Datalogger. Works with S/N 17*
 
-Test indicate that the full ModBus is available through the TCP connection. **Probably** this *can lead* to modifying Inverter Configuration via TCP calls.
-
-MQTT support into Home Assistant:
-
-```
-  - platform: mqtt
-    name: "DeyeInverter"
-    state_topic: "mqtt_topic"
-    unit_of_measurement: "W"
-    json_attributes_topic: "mqtt_topic/attributes"
-```
+Tests indicate that the full ModBus is available through the TCP connection. **Probably** this *can lead* to modifying Inverter Configuration via TCP calls.
 
 Thanks to @fjcarretero https://github.com/fjcarretero for his incredible support on understanding the data from and to the datalogger.
 Thanks to @xtheone https://github.com/XtheOne for his original V4 reader that was an inspiration (and I borrowed *some* code).
@@ -103,4 +93,16 @@ The inverter is not fast enough to answer, you can get timeouts if you query it 
 
 Python is not my strongest suite, feel free to suggest, rewrite or add whatever you feel is necessary.
 
+# Home Assistant support
 
+MQTT support into Home Assistant:
+
+```
+  - platform: mqtt
+    name: "DeyeInverter"
+    state_topic: "mqtt_topic"
+    unit_of_measurement: "W"
+    json_attributes_topic: "mqtt_topic/attributes"
+```
+
+<img src=https://github.com/jlopez77/DeyeInverter/blob/main/InverterData.png>
