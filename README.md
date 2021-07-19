@@ -1,6 +1,8 @@
 # DeyeInverter
 Small utility to read data from DEYE Inverters through the Solarman Datalogger. Works with S/N 17*
 
+Test indicate that the full ModBus is available through the TCP connection. **Probably** this *can lead* to modifying Inverter Configuration via TCP calls.
+
 MQTT support into Home Assistant:
 
 ```
