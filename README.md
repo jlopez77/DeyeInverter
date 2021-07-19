@@ -16,20 +16,18 @@ Thanks to @xtheone https://github.com/XtheOne for his original V4 reader that wa
 
 # Configuration
 
-Edit the InverterData.py and enter the following data:
+Edit the config.cfg and enter the following data:
 ```
-inverter_ip="192.168.X.XXX"
+[DeyeInverter]
+inverter_ip=192.168.X.XXX
 inverter_port=8899
 inverter_sn=17XXXXXXXX
 mqtt=1
-mqtt_server="192.168.X.X"
+mqtt_server=192.168.X.X
 mqtt_port=1883
-# this script will output data in 2 topics for Home Assistant, feel free to modify it to your needs
-# Status will be output into the mqtt_topic
-# attributes will be output in mqqt_topic/attributes
-mqtt_topic="XXXXXXXXXXX"
-mqtt_username=""
-mqtt_passwd=""
+mqtt_topic=XXXXXXXXXXXX
+mqtt_username=
+mqtt_passwd=
 ```
 
 # Run
@@ -97,7 +95,7 @@ mqtt_passwd=""
 
 # Known Issues
 
-Some data seems to be out of scale, for example all Temperatures are shown +100ºC.
+The inverter is not fast enough to answer, you can get timeouts if you query it too often.
 
 # Contrib
 
