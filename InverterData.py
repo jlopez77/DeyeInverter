@@ -15,6 +15,7 @@ def twosComplement_hex(hexval):
         val -= 1 << bits
     return val
 
+os.chdir(os.path.dirname(sys.argv[0]))
 # CONFIG
 
 configParser = configparser.RawConfigParser()
@@ -33,7 +34,6 @@ mqtt_passwd=configParser.get('DeyeInverter', 'mqtt_passwd')
 
 
 # END CONFIG
-os.chdir(os.path.dirname(sys.argv[0]))
 # Initialise MQTT if configured
 
 if mqtt==1: 
