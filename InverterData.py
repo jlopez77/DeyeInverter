@@ -18,11 +18,11 @@ def twosComplement_hex(hexval):
 
 inverter_ip="192.168.X.XXX"
 inverter_port=8899
-inverter_sn=17XXXXXXX
+inverter_sn=17XXXXXXXX
 mqtt=1
 mqtt_server="192.168.X.X"
 mqtt_port=1883
-mqtt_topic="XXXXXXXX"
+mqtt_topic="ha/deyeinverter"
 mqtt_username=""
 mqtt_passwd=""
 
@@ -32,17 +32,17 @@ os.chdir(os.path.dirname(sys.argv[0]))
 
 if mqtt==1: 
  client=paho.Client("inverter")
- if mqtt_username!="":  # only if mqtt_username is defined
+ if mqtt_username!="":
   client.tls_set()  # <--- even without arguments
   client.username_pw_set(username=mqtt_username, password=mqtt_passwd)
  client.connect(mqtt_server, mqtt_port)
 
 # PREPARE & SEND DATA TO THE INVERTER
 output="{" # initialise json output
-pini=59 # we can start in 59 instead of 0. We miss inverter s/n and board s/n.
+pini=59
+pfin=112
 chunks=0
 while chunks<2:
- pfin=pini+68
  if chunks==-1: # testing initialisation
   pini=235
   pfin=235
@@ -100,7 +100,7 @@ while chunks<2:
    sys.exit(1) #die
  
  # PARSE RESPONSE (start position 56, end position 60)
- 
+ totalpower=0 
  i=pfin-pini
  a=0
  while a<=i:
@@ -117,14 +117,17 @@ while chunks<2:
      unit=item["unit"]
      for register in item["registers"]:
       if register==hexpos and chunks!=-1:
-       #print(title+":"+str(response*ratio)+unit)
+       #print(hexpos+"-"+title+":"+str(response*ratio)+unit)
        output=output+"\""+ title + "(" + unit + ")" + "\":" + str(response*ratio)+","
+       if hexpos=='0x00BA': totalpower+=response*ratio;
+       if hexpos=='0x00BB': totalpower+=response*ratio; 
   a+=1
- pini=128 # second chunk starts in 128
+ pini=150
+ pfin=195
  chunks+=1  
 output=output[:-1]+"}"
 if mqtt==1:
- client.publish(mqtt_topic,"Online")
+ client.publish(mqtt_topic,totalpower)
  client.publish(mqtt_topic+"/attributes",output)
  print("Ok")
 else:
