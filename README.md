@@ -7,6 +7,7 @@ MQTT support into Home Assistant:
   - platform: mqtt
     name: "DeyeInverter"
     state_topic: "mqtt_topic"
+    unit_of_measurement: "W"
     json_attributes_topic: "mqtt_topic/attributes"
 ```
 
@@ -35,14 +36,7 @@ mqtt_passwd=""
 
 ```python3 InverterData.py
 
-{"Inverter ID()":XXXXX,
-"Inverter ID()":XXXXX,
-"Inverter ID()":XXXXX,
-"Inverter ID()":XXXXX,
-"Inverter ID()":XXXXX,
-"Control Board Version No.()":12642,
-"Communication Board Version No.()":-31926,
-"Running Status()":2,
+{"Running Status()":2,
 "Total Grid Produciton(kwh)":829.5,
 "Total Grid Produciton(kwh)":0.0,
 "Daily Energy Bought(kwh)":0.0,
