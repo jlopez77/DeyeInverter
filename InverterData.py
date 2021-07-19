@@ -6,6 +6,7 @@ import libscrc
 import json
 import paho.mqtt.client as paho
 import os
+import configparser
 
 def twosComplement_hex(hexval):
     bits = 16
@@ -16,15 +17,20 @@ def twosComplement_hex(hexval):
 
 # CONFIG
 
-inverter_ip="192.168.X.XXX"
-inverter_port=8899
-inverter_sn=17XXXXXXXX
-mqtt=1
-mqtt_server="192.168.X.X"
-mqtt_port=1883
-mqtt_topic="ha/deyeinverter"
-mqtt_username=""
-mqtt_passwd=""
+configParser = configparser.RawConfigParser()
+configFilePath = r'./config.cfg'
+configParser.read(configFilePath)
+
+inverter_ip=configParser.get('DeyeInverter', 'inverter_ip')
+inverter_port=int(configParser.get('DeyeInverter', 'inverter_port'))
+inverter_sn=int(configParser.get('DeyeInverter', 'inverter_sn'))
+mqtt=int(configParser.get('DeyeInverter', 'mqtt'))
+mqtt_server=configParser.get('DeyeInverter', 'mqtt_server')
+mqtt_port=int(configParser.get('DeyeInverter', 'mqtt_port'))
+mqtt_topic=configParser.get('DeyeInverter', 'mqtt_topic')
+mqtt_username=configParser.get('DeyeInverter', 'mqtt_username')
+mqtt_passwd=configParser.get('DeyeInverter', 'mqtt_passwd')
+
 
 # END CONFIG
 os.chdir(os.path.dirname(sys.argv[0]))
@@ -118,7 +124,11 @@ while chunks<2:
      for register in item["registers"]:
       if register==hexpos and chunks!=-1:
        #print(hexpos+"-"+title+":"+str(response*ratio)+unit)
-       output=output+"\""+ title + "(" + unit + ")" + "\":" + str(response*ratio)+","
+       if title.find("Temperature")!=-1: 
+        response=round(response*ratio-100,2)
+       else: 	
+        response=round(response*ratio,2)
+       output=output+"\""+ title + "(" + unit + ")" + "\":" + str(response)+","
        if hexpos=='0x00BA': totalpower+=response*ratio;
        if hexpos=='0x00BB': totalpower+=response*ratio; 
   a+=1
