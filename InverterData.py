@@ -34,14 +34,7 @@ mqtt_passwd=configParser.get('DeyeInverter', 'mqtt_passwd')
 
 
 # END CONFIG
-# Initialise MQTT if configured
 
-if mqtt==1: 
- client=paho.Client("inverter")
- if mqtt_username!="":
-  client.tls_set()  # <--- even without arguments
-  client.username_pw_set(username=mqtt_username, password=mqtt_passwd)
- client.connect(mqtt_server, mqtt_port)
 
 # PREPARE & SEND DATA TO THE INVERTER
 output="{" # initialise json output
@@ -137,6 +130,14 @@ while chunks<2:
  chunks+=1  
 output=output[:-1]+"}"
 if mqtt==1:
+ # Initialise MQTT if configured
+
+ if mqtt==1: 
+  client=paho.Client("inverter")
+ if mqtt_username!="":
+  client.tls_set()  # <--- even without arguments
+  client.username_pw_set(username=mqtt_username, password=mqtt_passwd)
+ client.connect(mqtt_server, mqtt_port)
  client.publish(mqtt_topic,totalpower)
  client.publish(mqtt_topic+"/attributes",output)
  print("Ok")
