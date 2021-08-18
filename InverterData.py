@@ -131,9 +131,7 @@ while chunks<2:
 output=output[:-1]+"}"
 if mqtt==1:
  # Initialise MQTT if configured
-
- if mqtt==1: 
-  client=paho.Client("inverter")
+ client=paho.Client("inverter")
  if mqtt_username!="":
   client.tls_set()  # <--- even without arguments
   client.username_pw_set(username=mqtt_username, password=mqtt_passwd)
