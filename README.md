@@ -14,6 +14,7 @@ Edit the config.cfg and enter the following data:
 inverter_ip=192.168.X.XXX
 inverter_port=8899
 inverter_sn=17XXXXXXXX
+installed_power=XXXXX #power in Watts e.g. for 4.5kW write 4500
 mqtt=1  # set to 1 for MQTT output, 0 for JSON output.
 mqtt_server=192.168.X.X
 mqtt_port=1883
