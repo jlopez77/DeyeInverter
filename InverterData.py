@@ -129,7 +129,7 @@ while chunks<2:
  pfin=195
  chunks+=1  
 output=output[:-1]+"}"
-if totalpower<20000:
+if totalpower<installed_power+1000:
  if mqtt==1:
   # Initialise MQTT if configured
   client=paho.Client("inverter")
@@ -142,4 +142,16 @@ if totalpower<20000:
   print("Ok")
  else:
   print(output)
+else:
+  #open text file
+  text_file = open("picos_potencia.txt", "w")
+
+  #write string to file
+  text_file.write(output)
+
+  #close file
+  text_file.close()
+
+
+
 
