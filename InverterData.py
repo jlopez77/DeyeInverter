@@ -7,6 +7,7 @@ import json
 import paho.mqtt.client as paho
 import os
 import configparser
+import datetime
 
 def twosComplement_hex(hexval):
     bits = 16
@@ -145,10 +146,11 @@ if totalpower<installed_power+1000:
   print(output)
 else:
   #open text file
-  text_file = open("picos_potencia.txt", "w")
+  text_file = open("picos_potencia.txt", "a")
 
   #write string to file
-  text_file.write(output)
+  text_file.write(datetime.datetime.now().strftime('%d/%m/%y %I:%M %S %p')+'\n')
+  text_file.write(output+'\n'+'\n')
 
   #close file
   text_file.close()
