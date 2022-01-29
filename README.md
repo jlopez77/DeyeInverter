@@ -95,14 +95,4 @@ Python is not my strongest suite, feel free to suggest, rewrite or add whatever 
 
 # Home Assistant support
 
-MQTT support into Home Assistant:
-
-```
-  - platform: mqtt
-    name: "DeyeInverter"
-    state_topic: "mqtt_topic"
-    unit_of_measurement: "W"
-    json_attributes_topic: "mqtt_topic/attributes"
-```
-
-<img src=https://github.com/jlopez77/DeyeInverter/blob/main/InverterData.png>
+The folder deye_logger contains a Homeassistant add-on. Reference the README.md file in that folder more information.
