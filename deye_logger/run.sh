@@ -19,9 +19,9 @@ mqtt_topic="$(bashio::config 'mqtt_topic')"
 
 bashio::log.info "Starting InverterData.py"
 
-# Run the script every 5 minutes
+# Run the script every 2 minutes
 # TODO: make this value configurable through config.yaml
-watch -n 300 'python3 InverterData.py'
+watch -n 120 'python3 InverterData.py'
 
 #echo "$(bashio::config 'inverter_ip')"
 #echo "$(bashio::config 'inverter_port')"
