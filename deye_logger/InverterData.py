@@ -59,7 +59,7 @@ while chunks < 2:
     crc = binascii.unhexlify(str(hex(libscrc.modbus(businessfield))[4:6]) + str(hex(libscrc.modbus(businessfield))[2:4]))  # CRC16modbus
     checksum = binascii.unhexlify('00')  # checksum F2
     endCode = binascii.unhexlify('15')
-    
+
     inverter_sn2 = bytearray.fromhex(hex(inverter_sn)[8:10] + hex(inverter_sn)[6:8] + hex(inverter_sn)[4:6] + hex(inverter_sn)[2:4])
     frame = bytearray(start + length + controlcode + serial + inverter_sn2 + datafield + businessfield + crc + checksum + endCode)
 
@@ -138,13 +138,12 @@ while chunks < 2:
     chunks += 1
 
 output = output[:-1] + "}"
-if totalpower < installed_power + 1000:
-    if mqtt == 1:
-        # Initialise MQTT if configured
-        client = paho.Client("inverter")
-        if mqtt_username != "":
-            client.tls_set()  # <--- even without arguments
-            client.username_pw_set(username=mqtt_username, password=mqtt_passwd)
+if mqtt == True:
+    # Initialise MQTT if configured
+    client = paho.Client("inverter")
+    if mqtt_username != "":
+        client.tls_set()  # <--- even without arguments
+        client.username_pw_set(username=mqtt_username, password=mqtt_passwd)
         client.connect(mqtt_server, mqtt_port)
         client.publish(mqtt_topic, totalpower)
         client.publish(mqtt_topic + "/attributes", output)
@@ -152,13 +151,3 @@ if totalpower < installed_power + 1000:
         print("Ok")
     else:
         print(output)
-else:
-    # open text file
-    text_file = open("picos_potencia.txt", "a")
-
-    # write string to file
-    text_file.write(datetime.datetime.now().strftime('%d/%m/%y %I:%M %S %p') + '\n')
-    text_file.write(output + '\n' + '\n')
-
-    # close file
-    text_file.close()
