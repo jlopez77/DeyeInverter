@@ -142,7 +142,7 @@ if mqtt == True:
     # Initialise MQTT if configured
     client = paho.Client("inverter")
     if mqtt_username != "":
-        client.tls_set()  # <--- even without arguments
+        #client.tls_set()  # <--- even without arguments
         client.username_pw_set(username=mqtt_username, password=mqtt_passwd)
         client.connect(mqtt_server, mqtt_port)
         client.publish(mqtt_topic, totalpower)
