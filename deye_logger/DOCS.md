@@ -80,6 +80,15 @@ Ensure you create the required mqtt sensors in the homeassistant configuration.y
         device_class: energy
         state_class: total_increasing
 
+      # Added batery % Soc sensor
+      - platform: mqtt
+        name: "solar_battery_soc_perc"
+        state_topic: "/sunsynk/attributes"
+        unit_of_measurement: "%"
+        value_template: "{{ value_json.battery_soc_perc }}"
+        device_class: energy
+        state_class: measurement
+
 Once these sensors are added to the Home assistant configuration you can use them in the Energy Dashboard to monotor energy usage.
 
 [//]: # "![Home Assistant Energy Config](images/energy_config.png)"
