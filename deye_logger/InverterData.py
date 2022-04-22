@@ -21,20 +21,18 @@ def twosComplement_hex(hexval):
 # os.chdir(os.path.dirname(sys.argv[0]))
 # os.chdir(os.getcwd())
 # CONFIG
-configParser = configparser.RawConfigParser()
-configFilePath = 'config.cfg'
-configParser.read(configFilePath)
+with open('data/options.json', 'r') as f:
+    config = json.load(f)
 
-inverter_ip = configParser.get('DeyeInverter', 'inverter_ip')
-inverter_port = int(configParser.get('DeyeInverter', 'inverter_port'))
-inverter_sn = int(configParser.get('DeyeInverter', 'inverter_sn'))
-installed_power = int(configParser.get('DeyeInverter', 'installed_power'))
-mqtt = int(configParser.get('DeyeInverter', 'mqtt'))
-mqtt_server = configParser.get('DeyeInverter', 'mqtt_server')
-mqtt_port = int(configParser.get('DeyeInverter', 'mqtt_port'))
-mqtt_topic = configParser.get('DeyeInverter', 'mqtt_topic')
-mqtt_username = configParser.get('DeyeInverter', 'mqtt_username')
-mqtt_passwd = configParser.get('DeyeInverter', 'mqtt_passwd')
+inverter_ip=config['inverter_ip']
+inverter_port=int(config['inverter_port'])
+inverter_sn=int(config['inverter_sn'])
+mqtt=bool(config['mqtt'])
+mqtt_server=config['mqtt_server']
+mqtt_port=int(config['mqtt_port'])
+mqtt_topic=config['mqtt_topic']
+mqtt_username=config['mqtt_username']
+mqtt_passwd=config['mqtt_passwd']
 
 # END CONFIG
 
@@ -61,6 +59,7 @@ while chunks < 2:
     crc = binascii.unhexlify(str(hex(libscrc.modbus(businessfield))[4:6]) + str(hex(libscrc.modbus(businessfield))[2:4]))  # CRC16modbus
     checksum = binascii.unhexlify('00')  # checksum F2
     endCode = binascii.unhexlify('15')
+    
     inverter_sn2 = bytearray.fromhex(hex(inverter_sn)[8:10] + hex(inverter_sn)[6:8] + hex(inverter_sn)[4:6] + hex(inverter_sn)[2:4])
     frame = bytearray(start + length + controlcode + serial + inverter_sn2 + datafield + businessfield + crc + checksum + endCode)
 
