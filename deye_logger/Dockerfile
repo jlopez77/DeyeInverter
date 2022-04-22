@@ -17,7 +17,6 @@ RUN \
         libc6-compat \
         git \
         py3-pip && \
-        
         # Install requirements for add-on
         pip3 install --no-cache-dir wheel && \
         pip3 install --no-cache-dir paho-mqtt && \
