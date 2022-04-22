@@ -127,7 +127,8 @@ while chunks < 2:
                         if unit == '%':
                             unit = 'perc'
                         
-                        output = output + "\"" + title + "(" + unit + ")" + "\":" + str(response) + ","
+                        # output = output + "\"" + title + "(" + unit + ")" + "\":" + str(response) + ","
+                        output=output+"\""+ title + "_" + unit + "\":" + str(response)+","
 
                         if hexpos == '0x00BA':
                             totalpower += response * ratio

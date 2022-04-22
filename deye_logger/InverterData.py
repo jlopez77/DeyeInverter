@@ -6,8 +6,6 @@ import libscrc
 import json
 import paho.mqtt.client as paho
 import os
-import configparser
-import datetime
 
 
 def twosComplement_hex(hexval):
@@ -19,20 +17,20 @@ def twosComplement_hex(hexval):
 
 
 # os.chdir(os.path.dirname(sys.argv[0]))
-# os.chdir(os.getcwd())
 # CONFIG
+
 with open('data/options.json', 'r') as f:
     config = json.load(f)
 
-inverter_ip=config['inverter_ip']
-inverter_port=int(config['inverter_port'])
-inverter_sn=int(config['inverter_sn'])
-mqtt=bool(config['mqtt'])
-mqtt_server=config['mqtt_server']
-mqtt_port=int(config['mqtt_port'])
-mqtt_topic=config['mqtt_topic']
-mqtt_username=config['mqtt_username']
-mqtt_passwd=config['mqtt_passwd']
+inverter_ip = config['inverter_ip']
+inverter_port = int(config['inverter_port'])
+inverter_sn = int(config['inverter_sn'])
+mqtt = bool(config['mqtt'])
+mqtt_server = config['mqtt_server']
+mqtt_port = int(config['mqtt_port'])
+mqtt_topic = config['mqtt_topic']
+mqtt_username = config['mqtt_username']
+mqtt_passwd = config['mqtt_passwd']
 
 # END CONFIG
 
@@ -47,7 +45,7 @@ while chunks < 2:
         pini = 235
         pfin = 235
         print("Initialise Connection")
-
+        
     start = binascii.unhexlify('A5')  # start
     length = binascii.unhexlify('1700')  # datalength
     controlcode = binascii.unhexlify('1045')  # controlCode
@@ -70,7 +68,9 @@ while chunks < 2:
     frame_bytes[len(frame_bytes) - 2] = int((checksum & 255))
 
     # OPEN SOCKET
-    for res in socket.getaddrinfo(inverter_ip, inverter_port, socket.AF_INET, socket.SOCK_STREAM):
+
+    for res in socket.getaddrinfo(inverter_ip, inverter_port, socket.AF_INET,
+                                  socket.SOCK_STREAM):
         family, socktype, proto, canonname, sockadress = res
         try:
             clientSocket = socket.socket(family, socktype, proto)
@@ -95,13 +95,14 @@ while chunks < 2:
                 print("No data - Die")
                 sys.exit(1)  # die, no data
         except socket.timeout as msg:
-            print("Connection timeout")
+            print("Connection timeout");
             sys.exit(1)  # die
 
     # PARSE RESPONSE (start position 56, end position 60)
     totalpower = 0
     i = pfin - pini
     a = 0
+
     while a <= i:
         p1 = 56 + (a * 4)
         p2 = 60 + (a * 4)
@@ -111,7 +112,7 @@ while chunks < 2:
             parameters = json.loads(txtfile.read())
         for parameter in parameters:
             for item in parameter["items"]:
-                title = item["titleEN"]
+                title = item["titleHA"]
                 ratio = item["ratio"]
                 unit = item["unit"]
                 for register in item["registers"]:
@@ -121,33 +122,26 @@ while chunks < 2:
                             response = round(response * ratio - 100, 2)
                         else:
                             response = round(response * ratio, 2)
-                        
-                        # Change battery Soc unit to percentage so python doesnt use the modulus operator
                         if unit == '%':
                             unit = 'perc'
-                        
-                        output = output + "\"" + title + "(" + unit + ")" + "\":" + str(response) + ","
-
-                        if hexpos == '0x00BA':
-                            totalpower += response * ratio
-                        if hexpos == '0x00BB':
-                            totalpower += response * ratio
+                        output = output + "\"" + title + "_" + unit + "\":" + str(response) + ","
+                        if hexpos == '0x00BA': totalpower += response * ratio;
+                        if hexpos == '0x00BB': totalpower += response * ratio;
         a += 1
     pini = 150
     pfin = 195
     chunks += 1
-
 output = output[:-1] + "}"
+
 if mqtt == True:
     # Initialise MQTT if configured
     client = paho.Client("inverter")
     if mqtt_username != "":
-        #client.tls_set()  # <--- even without arguments
+        # client.tls_set()  # <--- even without arguments
         client.username_pw_set(username=mqtt_username, password=mqtt_passwd)
-        client.connect(mqtt_server, mqtt_port)
-        client.publish(mqtt_topic, totalpower)
-        client.publish(mqtt_topic + "/attributes", output)
-        print(f"MQTT Topic:{mqtt_topic}'/attributes' Output:{output}")
-        print("Ok")
-    else:
-        print(output)
+    client.connect(mqtt_server, mqtt_port)
+    client.publish(mqtt_topic, totalpower)
+    client.publish(mqtt_topic + "/attributes", output)
+    print("Ok")
+else:
+    print(output)
