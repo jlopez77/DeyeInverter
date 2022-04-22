@@ -19,7 +19,7 @@ def twosComplement_hex(hexval):
 
 
 # os.chdir(os.path.dirname(sys.argv[0]))
-os.chdir(os.getcwd())
+# os.chdir(os.getcwd())
 # CONFIG
 configParser = configparser.RawConfigParser()
 configFilePath = 'config.cfg'
