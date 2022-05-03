@@ -7,6 +7,7 @@ The Solarman Wifi Logger must be reachable via an ip address on the network wher
 Using the Home Assistant Mosquitto broker add-on as the mqtt destination works really well. I have been using add-on on my Raspberry Pi v4 Home Assistant setup without issues for about a month now.
 
 This add-on is possible thanks to the work of @jlopez77 https://github.com/jlopez77/DeyeInverter
+And Modded according, added Battery SOC %
 
 ## Solarman Wifi Logger ##
 
@@ -47,9 +48,10 @@ Ensure you configure the add-on before starting it. Setting the mqtt flag to fal
 
 Ensure you create the required mqtt sensors in the homeassistant configuration.yaml to interpret the stats received on the /sunsynk mqtt topic.
 
+    # Solar Inverter sensors setup and all mqtt platforms
     sensor:
       - platform: mqtt
-        name: "solarpower"
+        name: "Solarpower"
         state_topic: "/sunsynk"
         unit_of_measurement: "W"
         json_attributes_topic: "/sunsynk/attributes"
@@ -57,7 +59,7 @@ Ensure you create the required mqtt sensors in the homeassistant configuration.y
         state_class: measurement
 
       - platform: mqtt
-        name: "solar_daily_energy_bought_kwh"
+        name: "Solar Daily Energy Bought KWH"
         state_topic: "/sunsynk/attributes"
         unit_of_measurement: "kWh"
         value_template: "{{ value_json.daily_energy_bought_kwh }}"
@@ -65,7 +67,7 @@ Ensure you create the required mqtt sensors in the homeassistant configuration.y
         state_class: total_increasing
 
       - platform: mqtt
-        name: "solar_daily_energy_sold_kwh"
+        name: "Solar Daily Energy Sold KWH"
         state_topic: "/sunsynk/attributes"
         unit_of_measurement: "kWh"
         value_template: "{{ value_json.daily_energy_sold_kwh }}"
@@ -73,12 +75,20 @@ Ensure you create the required mqtt sensors in the homeassistant configuration.y
         state_class: total_increasing
 
       - platform: mqtt
-        name: "solar_daily_production_KWH"
+        name: "Solar Daily Production KWH"
         state_topic: "/sunsynk/attributes"
         unit_of_measurement: "kWh"
         value_template: "{{ value_json.daily_production_KWH }}"
         device_class: energy
         state_class: total_increasing
+
+      - platform: mqtt
+        name: "Solar Battery SOC"
+        state_topic: "/sunsynk/attributes"
+        unit_of_measurement: "%"
+        value_template: "{{ value_json.battery_soc_soc }}"
+        device_class: energy
+        state_class: measurement
 
 Once these sensors are added to the Home assistant configuration you can use them in the Energy Dashboard to monotor energy usage.
 
