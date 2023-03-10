@@ -1,99 +1,93 @@
-# DeyeInverter
-Small utility to read data from DEYE Inverters through the Solarman Datalogger. Works with S/N 17*
+# First Thanks...
 
-Tests indicate that the full ModBus is available through the TCP connection. **Probably** this *can lead* to modifying Inverter Configuration via TCP calls.
+ + ...to @jlopez77 https://github.com/jlopez77
 
-Thanks to @fjcarretero https://github.com/fjcarretero for his incredible support on understanding the data from and to the datalogger.
-Thanks to @xtheone https://github.com/XtheOne for his original V4 reader that was an inspiration (and I borrowed *some* code).
+This is a fork from jlopez77/DeyeInverter
 
-# Configuration
+ + ... to @fjcarretero https://github.com/fjcarretero 
 
-Edit the config.cfg and enter the following data:
+ + ...to @xtheone https://github.com/XtheOne 
+
+for the initial work and code in the origin Repo
+
+and aswell  
+ + ...to @jmccrohan https://github.com/jmccrohan for his lighwight Solarman Scan utility!
+
+
+## DeyeInverter
+
+Small utility to read data from DEYE Micro Inverters with integrated Wifi Modules.through the Solarman Datalogger. 
+
+Tests indicate that the full ModBus is available through the TCP connection. 
+
+**Probably** this *can lead* to modifying Inverter Configuration via TCP calls.
+
+
+## Tested and works with 
+
+Deye SUN800G3-EU-230 Micro Inverters
++ Logger SN: 41xxxxxxxx
++ Inverter SN: 22xxxxxxxx
+
+
+### Scan for Logger
+
+```python3.x deye_scan.py```
+
+
+### Configuration
+
+Edit the deyeconfig.cfg and enter the following data:
 ```
 [DeyeInverter]
 inverter_ip=192.168.X.XXX
 inverter_port=8899
-inverter_sn=17XXXXXXXX
+inverter_sn=41xxxxxxxx
 installed_power=XXXXX #power in Watts e.g. for 4.5kW write 4500
-mqtt=1  # set to 1 for MQTT output, 0 for JSON output.
-mqtt_server=192.168.X.X
-mqtt_port=1883
-mqtt_topic=XXXXXXXXXXXX
-mqtt_username=
-mqtt_passwd=
 ```
 
-# Run
 
-```python3 InverterData.py
+### Run
 
-{"Running Status()":2,
-"Total Grid Produciton(kwh)":829.5,
-"Total Grid Produciton(kwh)":0.0,
-"Daily Energy Bought(kwh)":0.0,
-"Daily Energy Sold(kwh)":15.0,
-"Total Energy Bought(kwh)":21.900000000000002,
-"Total Energy Bought(kwh)":0.0,
-"Total Energy Sold(kwh)":1103.4,
-"Total Energy Sold(kwh)":0.0,
-"Daily Load Consumption(KWH)":1.2000000000000002,
-"Total Load Consumption(KWH)":365.3,
-"Total Load Consumption(KWH)":0.0,
-"DC Temperature(℃)":149.5,
-"AC Temperature(℃)":152.1,
-"Total Production(KWH)":1517.4,
-"Total Production(KWH)":0.0,
-"Alert()":0,
-"Alert()":0,
-"Alert()":0,
-"Alert()":0,
-"Alert()":0,
-"Alert()":0,
-"Daily Production(KWH)":16.900000000000002,
-"PV1 Voltage(V)":342.20000000000005,
-"PV1 Current(A)":7.800000000000001,
-"PV2 Voltage(V)":8.5,
-"PV2 Current(A)":0.0,
-"Grid Voltage L1(V)":241.3,
-"Grid Voltage L2(V)":0.0,
-"Load Voltage(V)":242.9,
-"Current L1(A)":10.51,
-"Current L2(A)":0.0,
-"Micro-inverter Power(W)":0,
-"Gen-connected Status()":0,
-"Gen Power(W)":0,
-"Internal CT L1 Power(W)":-2325,
-"Internal CT L2  Power(W)":0,
-"Grid Status()":-2365,
-"Total Gird Power(W)":-2365,
-"External CT L1 Power(W)":-2365,
-"External CT L2 Power(W)":0,
-"Inverter L1 Power(W)":2558,
-"Inverter L2 Power(W)":0,
-"Total Power(W)":2558,
-"Load L1 Power(W)":193,
-"Load L2 Power(W)":0,
-"Total Load Power(W)":193,
-"Battery Temperature(℃)":125.0,
-"Battery Voltage(V)":10.14,
-"Battery SOC(%)":0,
-"PV1 Power(W)":2619,
-"PV2 Power(W)":0,
-"Battery Status()":0,
-"Battery Power(W)":0,
-"Battery Current(A)":-0.01,
-"Grid-connected Status()":1,
-"SmartLoad Enable Status()":16}
+```python3.x InverterData.py ```
+
+```
+{
+    "Running Status()":4,
+    "Daily Production(kWh)":0.1,
+    "Total Production(kWh)":3.3,
+    "Total Production 1(kWh)":1.6,
+    "Total Production 2(kWh)":1.6,
+    "AC Voltage(V)":234.0,
+    "Total AC Output Current(A)":0.1,
+    "AC Output Frequency(Hz)":50.1,
+    "Total AC Output Power (Active)(W)":30.0,
+    "Inverter Temperature(Cº)":12.2,
+    "PV1 Voltage(V)":26.0,
+    "PV1 Current(A)":0.5,
+    "PV2 Voltage(V)":28.2,
+    "PV2 Current(A)":0.5,
+    "Grid Voltage Upper Limit(V)":275.0,
+    "Grid Voltage Lower Limit(V)":180.0,
+    "Grid Frequency Upper Limit(Hz)":52.0,
+    "Grid Frequency Lower Limit(Hz)":47.5,
+    "Installed Power(W)":3.8
+}
 ```
 
-# Known Issues
+
+### Use with Domoticz
+
+Create Virtual Devices in Domoticz (look at domoticz_sample.config) 
+
+and let the Script run every 5 minutes. (Example with Cron)
+
+
+## Known Issues
 
 The inverter is not fast enough to answer, you can get timeouts if you query it too often.
 
-# Contrib
 
-Python is not my strongest suite, feel free to suggest, rewrite or add whatever you feel is necessary.
+## Contrib
 
-# Home Assistant support
-
-The folder deye_logger contains a Homeassistant add-on. Reference the README.md file in that folder more information.
+Python is not my strengh - also the BASH Script wont be the nicest, both both do its work. 
