@@ -32,7 +32,9 @@ Deye SUN800G3-EU-230 Micro Inverters
 
 ### Scan for Logger
 
-```python3.x deye_scan.py```
+```
+python3.x deye_scan.py
+```
 
 
 ### Configuration
@@ -49,7 +51,9 @@ installed_power=XXXXX #power in Watts e.g. for 4.5kW write 4500
 
 ### Run
 
-```python3.x InverterData.py ```
+```
+python3.x InverterData.py
+```
 
 ```
 {

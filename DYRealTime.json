@@ -1,0 +1,227 @@
+[
+  {
+    "directory": "solar",
+    "items": [
+        {
+            "titleEN": "PV1 Voltage",
+            "registers": ["0x006D"],
+            "interactionType": 1,
+            "parserRule": 1,
+            "inputRanges": [],
+            "ratio": 0.1,
+            "unit": "V"
+        },
+        {
+            "titleEN": "PV2 Voltage",
+            "registers": ["0x006F"],
+            "interactionType": 1,
+            "parserRule": 1,
+            "inputRanges": [],
+            "ratio": 0.1,
+            "unit": "V"
+        },
+        {
+          "titleEN": "PV1 Current",
+          "registers": ["0x006E"],
+          "interactionType": 1,
+          "parserRule": 1,
+          "inputRanges": [],
+          "ratio": 0.1,
+          "unit": "A"
+        },
+        {
+          "titleEN": "PV2 Current",
+          "registers": ["0x0070"],
+          "interactionType": 1,
+          "parserRule": 1,
+          "inputRanges": [],
+          "ratio": 0.1,
+          "unit": "A"
+        },
+        {
+          "titleEN": "Daily Production",
+          "registers": ["0x003C"],
+          "interactionType": 1,
+          "parserRule": 1,
+          "inputRanges": [],
+          "ratio": 0.1,
+          "unit": "kWh"
+        },
+        {
+          "titleEN": "Total Production",
+          "registers": ["0x003F"],
+          "interactionType": 1,
+          "parserRule": 3,
+          "inputRanges": [],
+          "ratio": 0.1,
+          "unit": "kWh"
+        },
+        {
+          "titleEN": "Total Production 1",
+          "registers": ["0x0045"],
+          "interactionType": 1,
+          "parserRule": 3,
+          "inputRanges": [],
+          "ratio": 0.1,
+          "unit": "kWh"
+        },
+        {
+          "titleEN": "Total Production 2",
+          "registers": ["0x0047"],
+          "interactionType": 1,
+          "parserRule": 3,
+          "inputRanges": [],
+          "ratio": 0.1,
+          "unit": "kWh"
+        },
+        {
+          "titleEN": "Daily Production 1",
+          "registers": ["0x0041"],
+          "interactionType": 1,
+          "parserRule": 1,
+          "inputRanges": [],
+          "ratio": 0.1,
+          "unit": "kWh"
+        },
+        {
+          "titleEN": "Daily Production 2",
+          "registers": ["0x0042"],
+          "interactionType": 1,
+          "parserRule": 1,
+          "inputRanges": [],
+          "ratio": 0.1,
+          "unit": "kWh"
+        }
+    ]
+  },
+  {
+  "directory": "Grid",
+  "items": [
+      {
+          "titleEN": "AC Voltage",
+          "registers": ["0x0049"],
+          "interactionType": 1,
+          "parserRule": 1,
+          "inputRanges": [],
+          "ratio": 0.1,
+          "unit": "V"
+      },
+      {
+          "titleEN": "AC Output Frequency",
+          "registers": ["0x004F"],
+          "interactionType": 1,
+          "parserRule": 1,
+          "inputRanges": [],
+          "ratio": 0.01,
+          "unit": "Hz"
+      },
+      {
+        "titleEN": "Grid Frequency Upper Limit",
+        "registers": ["0x0098"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.01,
+        "unit": "Hz"
+      },
+      {
+        "titleEN": "Grid Frequency Lower Limit",
+        "registers": ["0x0099"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.01,
+        "unit": "Hz"
+      }
+    ]
+  },
+  {  
+    "directory": "Inverter",
+    "items": [
+      {
+        "titleEN": "Running Status",
+        "registers": ["0x003B"],
+        "interactionType": 2,
+        "parserRule": 1,
+        "optionRanges": [
+          {
+            "key": 0,
+            "valueEN": "Stand-by"
+          },
+          {
+            "key": 1,
+            "valueEN": "Self-checking"
+          },
+          {
+            "key": 2,
+            "valueEN": "Normal"
+          },
+          {
+            "key": 3,
+            "valueEN": "FAULT"
+          },
+          {
+            "key": 4,
+            "valueEN": "Normal-Connected"
+          }
+        ],
+        "ratio": 1,
+        "unit": ""
+      },
+      {
+        "titleEN": "Total AC Output Power (Active)",
+        "registers": ["0x0056"],
+        "interactionType": 1,
+        "parserRule": 3,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "W"
+      },
+      {
+        "titleEN": "Total AC Output Current",
+        "registers": ["0x004C"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "A"
+      },
+      {
+        "titleEN": "Inverter ID",
+        "registers": ["0x0003","0x0004","0x0005","0x0006","0x0007"],
+        "interactionType": 1,
+        "parserRule": 5,
+        "inputRanges": [],
+        "ratio": 1,
+        "unit": ""
+      },
+      {
+        "titleEN": "Inverter Temperature",
+        "registers": ["0x005A"],
+        "interactionType": 1,
+        "parserRule": 2,
+        "inputRanges": [],
+        "ratio": 0.01,
+        "unit": "Cº"
+      },
+      {
+        "titleEN": "Grid Voltage Upper Limit",
+        "registers": ["0x0096"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "V"
+      },
+      {
+        "titleEN": "Grid Voltage Lower Limit",
+        "registers": ["0x0097"],
+        "interactionType": 1,
+        "parserRule": 1,
+        "inputRanges": [],
+        "ratio": 0.1,
+        "unit": "V"
+      }
+    ]
+  }
+]

@@ -4,7 +4,6 @@ import binascii
 import re
 import libscrc
 import json
-import paho.mqtt.client as paho
 import os
 import configparser
 import datetime
@@ -20,20 +19,13 @@ os.chdir(os.path.dirname(sys.argv[0]))
 # CONFIG
 
 configParser = configparser.RawConfigParser()
-configFilePath = r'./config.cfg'
+configFilePath = r'./deyeconfig.cfg'
 configParser.read(configFilePath)
 
 inverter_ip=configParser.get('DeyeInverter', 'inverter_ip')
 inverter_port=int(configParser.get('DeyeInverter', 'inverter_port'))
 inverter_sn=int(configParser.get('DeyeInverter', 'inverter_sn'))
 installed_power=int(configParser.get('DeyeInverter', 'installed_power'))
-mqtt=int(configParser.get('DeyeInverter', 'mqtt'))
-mqtt_server=configParser.get('DeyeInverter', 'mqtt_server')
-mqtt_port=int(configParser.get('DeyeInverter', 'mqtt_port'))
-mqtt_topic=configParser.get('DeyeInverter', 'mqtt_topic')
-mqtt_username=configParser.get('DeyeInverter', 'mqtt_username')
-mqtt_passwd=configParser.get('DeyeInverter', 'mqtt_passwd')
-
 
 # END CONFIG
 
@@ -109,7 +101,9 @@ while chunks<2:
   p2=60+(a*4)
   response=twosComplement_hex(str(''.join(hex(ord(chr(x)))[2:].zfill(2) for x in bytearray(data))+'  '+re.sub('[^\x20-\x7f]', '', ''))[p1:p2])
   hexpos=str("0x") + str(hex(a+pini)[2:].zfill(4)).upper()
-  with open("./DYRealTime.txt") as txtfile:
+  #print(response)      # Enable for Debuging
+  #print(hexpos)        # Enable for Debuging
+  with open("./DYRealTime.json") as txtfile:
    parameters=json.loads(txtfile.read())
   for parameter in parameters:
    for item in parameter["items"]:
@@ -118,43 +112,21 @@ while chunks<2:
      unit=item["unit"]
      for register in item["registers"]:
       if register==hexpos and chunks!=-1:
-       #print(hexpos+"-"+title+":"+str(response*ratio)+unit)
        if title.find("Temperature")!=-1: 
-        response=round(response*ratio-100,2)
+        response=round(response*ratio-10, 2)
        else: 	
-        response=round(response*ratio,2)
+        response=round(response*ratio, 2)
        output=output+"\""+ title + "(" + unit + ")" + "\":" + str(response)+","
        if hexpos=='0x00BA': totalpower+=response*ratio;
        if hexpos=='0x00BB': totalpower+=response*ratio; 
+       #print(hexpos+"-"+title+"("+unit+"):"+str(response))      # Enable for Debuging
   a+=1
  pini=150
  pfin=195
- chunks+=1  
-output=output[:-1]+"}"
+ chunks+=1
+output=output+"\"Installed Power(W)\":" + str(installed_power) +"}"   
 if totalpower<installed_power+1000:
- if mqtt==1:
-  # Initialise MQTT if configured
-  client=paho.Client("inverter")
-  if mqtt_username!="":
-   client.tls_set()  # <--- even without arguments
-   client.username_pw_set(username=mqtt_username, password=mqtt_passwd)
-  client.connect(mqtt_server, mqtt_port)
-  client.publish(mqtt_topic,totalpower)
-  client.publish(mqtt_topic+"/attributes",output)
-  print("Ok")
- else:
   print(output)
 else:
-  #open text file
-  text_file = open("picos_potencia.txt", "a")
-
-  #write string to file
-  text_file.write(datetime.datetime.now().strftime('%d/%m/%y %I:%M %S %p')+'\n')
-  text_file.write(output+'\n'+'\n')
-
-  #close file
-  text_file.close()
-
-
-
-
+  print("Output Power higher then installed Plant!")
+  sys.exit(1)
