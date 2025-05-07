@@ -1,3 +1,7 @@
+# IMPORTANT: 
+If you liked this repo, check my new HA Integration -> https://github.com/jlopez77/DeyeInverterHA
+
+
 # DeyeInverter
 Small utility to read data from DEYE Inverters through the Solarman Datalogger. Works with S/N 17*
 
